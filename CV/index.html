@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sami Ljimari - CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-start:    #060818;
+      --bg-mid:      #0b0f2e;
+      --bg-end:      #130a2a;
+      --accent-blue: #4f8ef7;
+      --accent-purple: #9b6dff;
+      --accent-glow: #6c3de8;
+      --text-primary: #e8eaf6;
+      --text-muted:   #8892b0;
+      --glass-bg:     rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.10);
+      --glass-hover:  rgba(255,255,255,0.08);
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Background orbs ── */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #4f8ef7, transparent);
+      top: -100px; left: -150px;
+    }
+    body::after {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #9b6dff, transparent);
+      bottom: 0; right: -100px;
+    }
+
+    /* ── Layout ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* ── Glass card ── */
+    .glass {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius);
+      transition: background 0.25s, box-shadow 0.25s;
+    }
+    .glass:hover {
+      background: var(--glass-hover);
+      box-shadow: 0 8px 40px rgba(99, 61, 232, 0.15);
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 56px;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 10px;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ── Section spacing ── */
+    section { margin-bottom: 56px; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-label span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-purple);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--glass-border), transparent);
+    }
+
+    /* ── Hero ── */
+    #hero {
+      padding: 52px 44px;
+      margin-bottom: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(79,142,247,0.06), rgba(155,109,255,0.06));
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    .hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .status-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 6px #4ade80;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero-name {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .hero-location {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-location svg { width: 13px; height: 13px; flex-shrink: 0; opacity: 0.7; }
+    .hero-title {
+      font-size: 1.1rem;
+      color: var(--accent-blue);
+      font-weight: 500;
+      margin-bottom: 20px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .hero-bio {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 580px;
+      margin-bottom: 32px;
+    }
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.04);
+      transition: all 0.2s;
+    }
+    .hero-link:hover {
+      background: rgba(155,109,255,0.15);
+      border-color: var(--accent-purple);
+      color: #fff;
+      box-shadow: 0 0 16px rgba(155,109,255,0.2);
+    }
+    .hero-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+    button.hero-link { cursor: pointer; font-family: 'Inter', sans-serif; }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .skill-chip {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid var(--glass-border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .skill-chip:hover {
+      color: var(--text-primary);
+      border-color: var(--accent-blue);
+      background: rgba(79,142,247,0.1);
+    }
+    .skill-chip.purple:hover { border-color: var(--accent-purple); background: rgba(155,109,255,0.1); }
+
+    /* ── Education extras ── */
+    .edu-modules { margin-top: 14px; }
+    .edu-modules-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 8px;
+    }
+    .card-dissertation {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .diss-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-purple);
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+    .diss-title {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ── Timeline cards (experience & education) ── */
+    .timeline { display: flex; flex-direction: column; gap: 16px; }
+
+    .timeline-card {
+      padding: 28px 32px;
+      position: relative;
+    }
+    .timeline-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      border-radius: 3px;
+      background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .timeline-card:hover::before { opacity: 1; }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .card-date {
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-purple);
+      white-space: nowrap;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(155,109,255,0.1);
+      border: 1px solid rgba(155,109,255,0.2);
+    }
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .card-desc ul { padding-left: 18px; }
+    .card-desc li { margin-bottom: 4px; }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(79,142,247,0.08);
+      border: 1px solid rgba(79,142,247,0.2);
+      color: var(--accent-blue);
+    }
+
+    /* ── Projects grid ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .project-card {
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .project-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .project-desc {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+    .project-link {
+      font-size: 0.78rem;
+      color: var(--accent-purple);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+    }
+    .project-link:hover { color: #c4a7ff; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.78rem;
+      color: rgba(136,146,176,0.5);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Skills card padding (overrideable in media queries) ── */
+    .skills-card { padding: 28px 32px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      /* Nav: two-row V-shape */
+      nav { top: 8px; margin-bottom: 36px; padding: 0 12px; }
+      .nav-inner {
+        flex-wrap: wrap;
+        overflow-x: visible;
+        width: 100%;
+        padding: 6px;
+        gap: 4px;
+        justify-content: center;
+      }
+      /* Each link takes exactly 25% → 4 fit on row 1 */
+      nav a {
+        flex: 0 0 calc(25% - 3px);
+        text-align: center;
+        white-space: nowrap;
+        padding: 7px 2px;
+        font-size: 0.7rem;
+      }
+      /* Row 2: Projects + Free time centered → V indent */
+      /* Row 3: toggle on its own centered row */
+      .nav-divider { display: none; }
+      .lang-toggle {
+        flex: 0 0 100%;
+        display: flex;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin-top: 2px;
+      }
+
+      /* Container & sections */
+      .container { padding: 20px 14px 60px; }
+      section { margin-bottom: 40px; }
+
+      /* Hero */
+      #hero { padding: 32px 22px; margin-bottom: 40px; }
+      .hero-title { font-size: 0.9rem; word-break: break-word; }
+      .hero-bio { font-size: 0.88rem; margin-bottom: 24px; max-width: 100%; }
+      .hero-links { gap: 8px; }
+      .hero-link { padding: 7px 14px; font-size: 0.8rem; }
+
+      /* Skills */
+      .skills-card { padding: 20px 18px; }
+
+      /* Timeline */
+      .timeline-card { padding: 20px 18px; }
+      .card-title { font-size: 0.95rem; }
+      .card-desc { font-size: 0.85rem; }
+
+      /* Projects */
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card { padding: 22px 20px; }
+
+      /* Hobbies */
+      .hobbies-grid { grid-template-columns: 1fr; }
+      .hobby-card { padding: 24px 20px; }
+
+      /* Not interested */
+      .no-interest-card { padding: 22px 20px; }
+      .no-interest-list li { font-size: 0.85rem; }
+    }
+
+    @media (max-width: 420px) {
+      nav { padding: 0 8px; }
+      .container { padding: 14px 10px 50px; }
+
+      #hero { padding: 24px 16px; }
+      .hero-name { font-size: 1.8rem; }
+      .hero-title { font-size: 0.78rem; }
+      .hero-link { padding: 6px 11px; font-size: 0.76rem; }
+      /* Truncate the email on very small screens so it doesn't overflow */
+      #email-label { max-width: 170px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+      .card-header { flex-direction: column; gap: 6px; }
+      .card-date { align-self: flex-start; }
+      .card-title { font-size: 0.9rem; }
+      .card-subtitle { font-size: 0.8rem; }
+
+      .skills-card { padding: 16px 14px; }
+      .timeline-card { padding: 18px 14px; }
+      .project-card { padding: 18px 16px; }
+      .no-interest-card { padding: 18px 16px; }
+    }
+
+    /* ── Not interested section ── */
+    .section-label.red span { color: #f05555; }
+    .section-label.red::after { background: linear-gradient(to right, rgba(240,85,85,0.3), transparent); }
+    .no-interest-card {
+      padding: 28px 32px;
+      background: rgba(240,85,85,0.04);
+      border-color: rgba(240,85,85,0.18);
+    }
+    .no-interest-card:hover {
+      background: rgba(240,85,85,0.07);
+      box-shadow: 0 8px 40px rgba(240,85,85,0.12);
+    }
+    .no-interest-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .no-interest-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .no-interest-list li::before {
+      content: '✕';
+      color: #f05555;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ── Project status badges ── */
+    .project-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      font-weight: 500;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .project-status.private {
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass-border);
+    }
+    .project-status.discontinued {
+      color: #f09060;
+      background: rgba(240,144,96,0.08);
+      border: 1px solid rgba(240,144,96,0.22);
+    }
+    .project-status.store {
+      color: var(--accent-blue);
+      background: rgba(79,142,247,0.08);
+      border: 1px solid rgba(79,142,247,0.22);
+    }
+
+    /* ── Project screenshot ── */
+    .project-screenshot {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      object-fit: cover;
+      max-height: 130px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+      cursor: zoom-in;
+    }
+    .project-screenshot:hover { opacity: 1; }
+
+    /* ── Lightbox ── */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 6, 20, 0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      cursor: zoom-out;
+    }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 0 80px rgba(79,142,247,0.18);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .lightbox-close:hover { color: var(--text-primary); }
+
+    /* ── Free time ── */
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .hobby-card {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+    .hobby-icon {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      white-space: pre;
+      color: var(--accent-purple);
+      opacity: 0.85;
+      letter-spacing: 0.03em;
+      text-shadow: 0 0 10px rgba(155,109,255,0.4);
+    }
+    .project-icon {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      white-space: pre;
+      color: var(--accent-blue);
+      opacity: 0.85;
+      letter-spacing: 0.03em;
+      margin-bottom: 2px;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(79,142,247,0.4);
+    }
+    .hobby-name { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+    .hobby-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.65; max-width: 280px; }
+    /* ── Language toggle ── */
+    .lang-sk { display: none; }
+    body.sk .lang-en { display: none; }
+    body.sk .lang-sk { display: block; }
+    body.sk span.lang-sk { display: inline; }
+    body.sk span.lang-en { display: none !important; }
+    .nav-divider { width: 1px; height: 18px; background: var(--glass-border); margin: 0 6px; flex-shrink: 0; }
+    .lang-toggle { display: flex; gap: 2px; padding: 3px; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); }
+    .lang-btn { font-size: 0.72rem; font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 5px; border: none; background: transparent; color: var(--text-muted); cursor: pointer; transition: all 0.18s; }
+    .lang-btn.active { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); color: #fff; }
+    .lang-btn:not(.active):hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="glass nav-inner">
+      <a href="#hero"><span class="lang-en">Home</span><span class="lang-sk">Domov</span></a>
+      <a href="#skills"><span class="lang-en">Skills</span><span class="lang-sk">Zručnosti</span></a>
+      <a href="#experience"><span class="lang-en">Experience</span><span class="lang-sk">Skúsenosti</span></a>
+      <a href="#education"><span class="lang-en">Education</span><span class="lang-sk">Vzdelanie</span></a>
+      <a href="#projects"><span class="lang-en">Projects</span><span class="lang-sk">Projekty</span></a>
+      <a href="#freetime"><span class="lang-en">Free time</span><span class="lang-sk">Voľný čas</span></a>
+      <div class="nav-divider"></div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-sk" onclick="setLang('sk')">SK</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- ── Hero ── -->
+    <section id="hero" class="glass">
+      <div class="hero-status">
+        <span class="status-dot"></span>
+        <span class="lang-en">Open to opportunities</span><span class="lang-sk">Otvorený pracovným príležitostiam</span>
+      </div>
+      <h1 class="hero-name">Sami Ljimari</h1>
+      <div class="hero-location">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 14 6 14s6-8.75 6-14c0-3.314-2.686-6-6-6z"/><circle cx="12" cy="8" r="2"/></svg>
+        <span class="lang-en">Bratislava, Slovakia</span><span class="lang-sk">Bratislava, Slovensko</span>
+      </div>
+      <div class="hero-title">&gt; <span class="lang-en">Software Engineer - Application Specialist</span><span class="lang-sk">Softvérový inžinier - Aplikačný špecialista</span></div>
+      <p class="hero-bio lang-en">
+        4+ years of industry experience building scalable web applications, 3rd party integrations based on existing systems and various integrations.
+        Passionate about clean code, performance optimisation,
+        and user experience. Always eager to learn new technologies and take on challenging problems.
+      </p>
+      <p class="hero-bio lang-sk">
+        Viac ako 4 roky skúseností s vývojom škálovateľných webových aplikácií, integráciami tretích strán a rôznymi systémovými integráciami.
+        Zaujíma ma čistý kód, optimalizácia výkonu a používateľská skúsenosť.
+        Vždy sa snažím učiť nové technológie a riešiť náročné problémy.
+      </p>
+      <div class="hero-links">
+        <button class="hero-link" id="email-btn" onclick="copyEmail()" title="Click to copy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+          <span id="email-label">sami.ljimari@gmail.com</span>
+        </button>
+        <a class="hero-link" href="https://github.com/samiljimari" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub
+        </a>
+        <a class="hero-link" href="https://www.linkedin.com/in/sami-ljimari-499748182/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zm2-3a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+          LinkedIn
+        </a>
+        <a class="hero-link" href="#projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Portfolio
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Skills ── -->
+    <section id="skills">
+      <div class="section-label"><span class="lang-en">// skills</span><span class="lang-sk">// zručnosti</span></div>
+      <div class="glass skills-card">
+        <div class="skills-grid">
+          <span class="skill-chip">TypeScript</span>
+          <span class="skill-chip">PHP</span>
+          <span class="skill-chip">JavaScript</span>
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">C++</span>
+          <span class="skill-chip">React</span>
+          <span class="skill-chip">Node.js</span>
+          <span class="skill-chip">Next.js</span>
+          <span class="skill-chip">Linux Bash</span>
+          <span class="skill-chip">Haskell</span>
+          <span class="skill-chip">Java</span>
+          <span class="skill-chip">Go Lang</span>
+          <span class="skill-chip">Tensorflow</span>
+          <span class="skill-chip purple">PostgreSQL</span>
+          <span class="skill-chip purple">Redis</span>
+          <span class="skill-chip purple">Docker</span>
+          <span class="skill-chip purple">Kubernetes</span>
+          <span class="skill-chip purple">AWS</span>
+          <span class="skill-chip">REST APIs</span>
+          <span class="skill-chip">GraphQL</span>
+          <span class="skill-chip">Git</span>
+          <span class="skill-chip">CI/CD</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Experience ── -->
+    <section id="experience">
+      <div class="section-label"><span class="lang-en">// experience</span><span class="lang-sk">// pracovné skúsenosti</span></div>
+      <div class="timeline">
+
+        <div class="timeline-card glass">
+          <div class="card-header">
+            <div class="card-title"><span class="lang-en">Senior Application Specialist</span><span class="lang-sk">Senior Aplikačný Špecialista</span></div>
+            <div class="card-date">Oct 2025 — <span class="lang-en">Present</span><span class="lang-sk">Súčasnosť</span></div>
+          </div>
+          <div class="card-subtitle">SHMU · <span class="lang-en">Full-time · Bratislava, Slovakia</span><span class="lang-sk">Plný úväzok · Bratislava, Slovensko</span></div>
+          <div class="card-desc lang-en">
+            <ul>
+              <li>Leading the development of core internal applications and systems.</li>
+              <li>Migrated and optimized multiple legacy systems to modern server infrastructure, improving performance and security.</li>
+              <li>Inherited and maintained critical legacy codebases, Databases and server infrastructure, developing new features, and ensuring system reliability.</li>
+            </ul>
+          </div>
+          <div class="card-desc lang-sk">
+            <ul>
+              <li>Vediem vývoj kľúčových interných aplikácií a systémov.</li>
+              <li>Migroval a optimalizoval viacero zastaraných systémov na modernú serverovú infraštruktúru, čím sa zlepšil výkon a bezpečnosť.</li>
+              <li>Prevzal a spravoval kritické zastarané kódové základne, databázy a serverovú infraštruktúru, vyvíjal nové funkcie a zabezpečoval spoľahlivosť systémov.</li>
+            </ul>
+          </div>
+          <div class="card-tags">
+            <span class="tag">PHP</span>
+            <span class="tag">HTML & CSS</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">React</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Docker (Kubernetes)</span>
+            <span class="tag">Linux bash</span>
+            <span class="tag">Git + CI/CD</span>
+          </div>
+        </div>
+
+        <div class="timeline-card glass">
+          <div class="card-header">
+            <div class="card-title"><span class="lang-en">Junior Software Engineer / Data Analyst</span><span class="lang-sk">Juniorský Softvérový Inžinier / Dátový Analytik</span></div>
+            <div class="card-date">Dec 2022 — Apr 2024</div>
+          </div>
+          <div class="card-subtitle">Takeda Pharmaceutics · <span class="lang-en">Full-time · Bratislava, Slovakia</span><span class="lang-sk">Plný úväzok · Bratislava, Slovensko</span></div>
+          <div class="card-desc lang-en">
+            <ul>
+              <li>Managed data analysis and reporting tasks, providing insights to support business decisions.</li>
+              <li>Worked on the Salesforce platform to streamline data management and reporting processes.</li>
+              <li>Integrated Salesforce LWCs (Lightning Web Components) and Apex classes to show stakeholders real-time data insights.</li>
+            </ul>
+          </div>
+          <div class="card-desc lang-sk">
+            <ul>
+              <li>Spravoval úlohy dátovej analýzy a reportingu, poskytoval poznatky na podporu obchodných rozhodnutí.</li>
+              <li>Pracoval na platforme Salesforce na zefektívnenie správy dát a reportingových procesov.</li>
+              <li>Integroval Salesforce LWC (Lightning Web Components) a Apex triedy na zobrazenie real-time dátových prehľadov pre stakeholderov.</li>
+            </ul>
+          </div>
+          <div class="card-tags">
+            <span class="tag">LWC (HTML, CSS, JS)</span>
+            <span class="tag">Apex (Java equivalent)</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+
+        <div class="timeline-card glass">
+          <div class="card-header">
+            <div class="card-title"><span class="lang-en">Junior Developer - Internship</span><span class="lang-sk">Vývojár Junior - Stáž</span></div>
+            <div class="card-date">Sep 2020 — Sep 2021</div>
+          </div>
+          <div class="card-subtitle">Svetelne Stropy · <span class="lang-en">Full-time · Bratislava, Slovakia</span><span class="lang-sk">Plný úväzok · Bratislava, Slovensko</span></div>
+          <div class="card-desc lang-en">
+            <ul>
+              <li>Developed internal tooling and API plugins for whiteboard integrations.</li>
+              <li>Worked with hardware and software integrations to enhance system functionality, like IoT devices and custom sensors.</li>
+              <li>Optimized 3-D scans of customer spaces for accurate virtual representations and interactive visualizations in Typescript.</li>
+            </ul>
+          </div>
+          <div class="card-desc lang-sk">
+            <ul>
+              <li>Vyvíjal interné nástroje a API pluginy pre integrácie s whiteboardom.</li>
+              <li>Pracoval na hardvérových a softvérových integráciách na rozšírenie funkcionality systému, vrátane IoT zariadení a vlastných senzorov.</li>
+              <li>Optimalizoval 3D skeny zákazníckych priestorov pre presné virtuálne reprezentácie a interaktívne vizualizácie v TypeScripte.</li>
+            </ul>
+          </div>
+          <div class="card-tags">
+            <span class="tag">Typescript</span>
+            <span class="tag">Javascript</span>
+            <span class="tag">REST API</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Education ── -->
+    <section id="education">
+      <div class="section-label"><span class="lang-en">// education</span><span class="lang-sk">// vzdelanie</span></div>
+      <div class="timeline">
+
+        <div class="timeline-card glass">
+          <div class="card-header">
+            <div class="card-title"><span class="lang-en">BSc.H. Software Engineering</span><span class="lang-sk">Bc. Softvérové inžinierstvo</span></div>
+            <div class="card-date">2018 — 2022</div>
+          </div>
+          <div class="card-subtitle">Nottingham Trent University · <span class="lang-en">First Class Honours</span><span class="lang-sk">Prospel s vyznamenaním</span></div>
+          <div class="card-desc lang-en">Specialised in time complexity algorithms and back-end infrastructure.</div>
+          <div class="card-desc lang-sk">Špecializácia na algoritmy časovej zložitosti a back-end infraštruktúru.</div>
+
+          <div class="edu-modules lang-en">
+            <div class="edu-modules-label">Modules</div>
+            <div class="card-tags">
+              <span class="tag">Data Structures & Algorithms</span>
+              <span class="tag">Cloud Computing</span>
+              <span class="tag">Cybersecurity</span>
+              <span class="tag">Database Engineering</span>
+              <span class="tag">AI Neural Networks</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Computational Algebra</span>
+              <span class="tag">Systems Analysis & Design</span>
+              <span class="tag">Internet Application Programming</span>
+              <span class="tag">Mobile Platform Applications</span>
+              <span class="tag">Linux Kernel Architecture</span>
+            </div>
+          </div>
+          <div class="edu-modules lang-sk">
+            <div class="edu-modules-label">Moduly</div>
+            <div class="card-tags">
+              <span class="tag">Dátové štruktúry & algoritmy</span>
+              <span class="tag">Cloud Computing</span>
+              <span class="tag">Kybernetická bezpečnosť</span>
+              <span class="tag">Databázové inžinierstvo</span>
+              <span class="tag">AI neurónové siete</span>
+              <span class="tag">Strojové učenie</span>
+              <span class="tag">Výpočtová algebra</span>
+              <span class="tag">Analýza a návrh systémov</span>
+              <span class="tag">Programovanie internetových aplikácií</span>
+              <span class="tag">Aplikácie mobilných platforiem</span>
+              <span class="tag">Architektúra Linux kernelu</span>
+            </div>
+          </div>
+
+          <div class="card-dissertation">
+            <span class="diss-label lang-en">Dissertation</span><span class="diss-label lang-sk">Záverečná práca</span>
+            <span class="diss-title lang-en">Web Automation and Human-Computer Interaction</span><span class="diss-title lang-sk">Webová automatizácia a interakcia človek-počítač</span>
+          </div>
+        </div>
+
+        <div class="timeline-card glass">
+          <div class="card-header">
+            <div class="card-title"><span class="lang-en">A Levels — Informatics, English, Slovak, Economics</span><span class="lang-sk">Maturita — Informatika, Angličtina, Slovenčina, Ekonómia</span></div>
+            <div class="card-date">2014 — 2018</div>
+          </div>
+          <div class="card-subtitle"><span class="lang-en">Bilingual Gymnasium Ceska 10</span><span class="lang-sk">Bilingválne Gymnázium Česká 10</span></div>
+          <div class="card-desc"><span class="lang-en">1.0 Average</span><span class="lang-sk">Priemer 1.0</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Projects ── -->
+    <section id="projects">
+      <div class="section-label"><span class="lang-en">// projects</span><span class="lang-sk">// projekty</span></div>
+      <div class="projects-grid">
+
+        <div class="project-card glass">
+          <div class="project-icon">┌──────┐<br>│  >_  │<br>└──────┘</div>
+          <div class="project-name"><span class="lang-en">Web Automation Tool</span><span class="lang-sk">Nástroj na webovú automatizáciu</span></div>
+          <div class="project-desc lang-en">
+            A terminal based web automation tool built in Go, allowing users to create and run scripts that interact with websites for tasks like data scraping, form submission, and bulk purchases with support for headless browser automation and proxy rotation.
+          </div>
+          <div class="project-desc lang-sk">
+            Terminálový nástroj na webovú automatizáciu napísaný v Go. Umožňuje vytvárať a spúšťať skripty na interakciu s webovými stránkami — scraping dát, odosielanie formulárov, hromadné nákupy — s podporou bezhlavého prehliadača a rotácie proxy serverov.
+          </div>
+          <img class="project-screenshot" src="image_web_automation.png" alt="Web Automation Tool screenshot" onclick="openLightbox(this.src, this.alt)" />
+          <div class="card-tags">
+            <span class="tag">Node JS</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Puppeteer</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-status discontinued">
+              <span class="lang-en">⚠ Discontinued</span><span class="lang-sk">⚠ Ukončený projekt</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="project-card glass">
+          <div class="project-icon">┌──┬──┐<br>│▪▪│  │<br>└──┴──┘</div>
+          <div class="project-name"><span class="lang-en">Online Whiteboard Plugins</span><span class="lang-sk">Pluginy pre online whiteboard</span></div>
+          <div class="project-desc lang-en">
+            Created several plugins for the Miro online whiteboard platform, including a layer management plugin, a metric unit converter from the whiteboard's internal units, for our client interaction team to streamline their workflow and enhance their whiteboard experience.
+          </div>
+          <div class="project-desc lang-sk">
+            Séria pluginov pre online whiteboard platformu Miro — vrátane pluginu na správu vrstiev a konvertora jednotiek z interných jednotiek whiteboardu na metricke. Určené pre tím klientskej interakcie na zefektívnenie pracovného toku s zakaznikom.
+          </div>
+          <img class="project-screenshot" src="image_miro_scale.png" alt="Miro Plugin screenshot" onclick="openLightbox(this.src, this.alt)" />
+          <div class="card-tags">
+            <span class="tag">Vanilla JS</span>
+            <span class="tag">REST API</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-status discontinued">
+              <span class="lang-en">⚠ Discontinued</span><span class="lang-sk">⚠ Ukončený projekt</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="project-card glass">
+          <div class="project-icon">╔═════╗<br>║ ◉ ◉ ║<br>╚═════╝</div>
+          <div class="project-name"><span class="lang-en">Face Recognition for University Grounds</span><span class="lang-sk">Rozpoznávanie tvárí pre areál univerzity</span></div>
+          <div class="project-desc lang-en">
+            tensorflow.js and WebAssembly based face recognition system for university campus security, allowing real-time identification of individuals from security camera feeds with high accuracy and low latency.
+          </div>
+          <div class="project-desc lang-sk">
+            Systém rozpoznávania tvárí pre zabezpečenie univerzitného kampusu postavený na tensorflow.js a WebAssembly. Umožňuje identifikáciu osôb v reálnom čase zo záberov bezpečnostných kamier s vysokou presnosťou a nízkou latenciou.
+          </div>
+          <div class="card-tags">
+            <span class="tag">Tensorflow</span>
+            <span class="tag">WebAssembly</span>
+            <span class="tag">Rust</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-status private">
+              🔒 <span class="lang-en">Private Repository</span><span class="lang-sk">Súkromný repozitár</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="project-card glass">
+          <div class="project-icon">┌────────┐<br>│[✓] ─── │<br>│[✓] ─── │<br>│[!] ─── │<br>└────────┘</div>
+          <div class="project-name"><span class="lang-en">Workforce Compliance System</span><span class="lang-sk">Systém správy zamestnancov</span></div>
+          <div class="project-desc lang-en">
+            Internal system tracking employee equipment, health checks, and training certifications — with expiry monitoring and automated notifications to prompt renewals before deadlines. Synced daily with Windows AD and LDAP to automatically onboard new hires and deactivate leavers. A hierarchy script grants managers and directors role-appropriate edit and create permissions.
+          </div>
+          <div class="project-desc lang-sk">
+            Interný systém na sledovanie vybavenia zamestnancov, zdravotných prehliadok a školení — s monitoringom platností a automatickými notifikáciami pred vypršaním. Denná synchronizácia s Windows AD a LDAP automaticky pridáva nových zamestnancov a deaktivuje odchádzajúcich. Hierarchický skript priraďuje manažérom a riaditeľom práva na úpravu a vytváranie záznamov.
+          </div>
+          <div class="card-tags">
+            <span class="tag">PHP</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">Docker</span>
+            <span class="tag">LDAP / AD</span>
+            <span class="tag">Bash - Cron</span>
+            <span class="tag">Git Version control w/ CI/CD pipeline</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-status private">
+              🔒 <span class="lang-en">Private Repository</span><span class="lang-sk">Súkromný repozitár</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="project-card glass">
+          <div class="project-icon">┌────────┐<br>│● ● ●   │<br>├────────┤<br>│≡  ████ │<br>└────────┘</div>
+          <div class="project-name"><span class="lang-en">Sports Games Event Website</span><span class="lang-sk">Webová stránka Športových hier</span></div>
+          <div class="project-desc lang-en">
+            Public website for the XXXII Športové Hry SHMÚ &amp; ČHMÚ 2026 — an inter-institute multi-sport competition between Slovak and Czech hydrometeorological institutes. Features registration, gallery, and a live results page backed by a custom admin panel where admins input match results. The results engine automatically calculates group stage standings, playoff brackets, and combined team point totals across all sports.
+          </div>
+          <div class="project-desc lang-sk">
+            Webová stránka pre XXXII Športové Hry SHMÚ &amp; ČHMÚ 2026 — medziústavné viacšportové podujatie slovenského a českého hydrometeorologického ústavu. Obsahuje registráciu, galériu a živú stránku výsledkov napojenú na administrátorský panel. Výsledkový engine automaticky vypočítava tabuľky skupinovej fázy, play-off a celkové bodové hodnotenie tímov naprieč všetkými športmi.
+          </div>
+          <div class="card-tags">
+            <span class="tag">PHP</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Appache</span>
+          </div>
+          <div class="project-footer">
+            <a class="project-link" href="https://www.shmu.sk/sh2026/index.html" target="_blank">
+              ↗ <span class="lang-en">Live site</span><span class="lang-sk">Živá stránka</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card glass">
+          <div class="project-icon">┌──────┐<br>│ ♠  ♣ │<br>│ ♥  ♦ │<br>└──────┘</div>
+          <div class="project-name"><span class="lang-en">MTG Board Game Simulator</span><span class="lang-sk">Simulátor doskovej hry MTG</span></div>
+          <div class="project-desc lang-en">
+            A Magic: The Gathering card game Momir format simulator, keeping a up-to-date internal card DB of 20,000+ cards, utilizing a custom small factor PC setup with a small form factor printer.
+          </div>
+          <div class="project-desc lang-sk">
+            Simulátor formátu Momir pre kartovú hru Magic: The Gathering s priebežne aktualizovanou internou databázou 20 000+ kariet. Využíva vlastné PC riešenie s mATX architektúrou a integrovanou kompaktnou tlačiarňou.
+          </div>
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Shell script</span>
+            <span class="tag">CLI</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-status private">
+              🔒 <span class="lang-en">Private Repository</span><span class="lang-sk">Súkromný repozitár</span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Free time ── -->
+    <section id="freetime">
+      <div class="section-label">
+        <span class="lang-en">// free time</span><span class="lang-sk">// voľný čas</span>
+      </div>
+      <div class="hobbies-grid">
+
+        <div class="hobby-card glass">
+          <div class="hobby-icon">  ^  <br>< + ><br>  v  </div>
+          <div class="hobby-name"><span class="lang-en">Gaming</span><span class="lang-sk">Hry</span></div>
+          <div class="hobby-desc"><span class="lang-en">From FPS to strategy, to MMORPGs I like to explore various game genres and mechanics.</span><span class="lang-sk">Od FPS po stratégie až po MMORPG rád skúmam rôzne herné žánre a mechaniky.</span></div>
+        </div>
+
+        <div class="hobby-card glass">
+          <div class="hobby-icon">/-----\<br>|= = =|<br>\-----/</div>
+          <div class="hobby-name"><span class="lang-en">Reading</span><span class="lang-sk">Čítanie</span></div>
+          <div class="hobby-desc"><span class="lang-en">Reading mainly classic literature, philosophical novels and psychological fiction from 19th to 20th century European literature. </span><span class="lang-sk">Čítam hlavne klasickú literatúru, filozofické romány a psychologickú fikciu z 19. až 20. storočia európskej literatúry.</span></div>
+        </div>
+
+        <div class="hobby-card glass">
+          <div class="hobby-icon"> \o/ <br>  |  <br> / \ </div>
+          <div class="hobby-name"><span class="lang-en">Sports</span><span class="lang-sk">Šport</span></div>
+          <div class="hobby-desc"><span class="lang-en">Tend to play football 3 times a week, weightlifting on and off</span><span class="lang-sk">Zvyknem hrať futbal 3-krát týždenne, občas posilujem</span></div>
+        </div>
+
+        <div class="hobby-card glass">
+          <div class="hobby-icon">fn() {<br>  ...<br>}</div>
+          <div class="hobby-name"><span class="lang-en">Side projects</span><span class="lang-sk">Vedľajšie projekty</span></div>
+          <div class="hobby-desc"><span class="lang-en">Apart from software projects, I enjoy hands-on hardware meddling, building machines for various purposes, ranging from home servers, IoT devices, and basic device setup like Raspberry Pi projects.</span><span class="lang-sk">Okrem softvérových projektov sa venujem aj hardvérovým experimentom, stavbe strojov na rôzne účely, od domácich serverov, IoT zariadení až po základné nastavenie zariadení ako projekty s Raspberry Pi.</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Not interested ── -->
+    <section id="not-interested">
+      <div class="section-label red"><span class="lang-en">// not interested in</span><span class="lang-sk">// nemám záujem o</span></div>
+      <div class="glass no-interest-card">
+        <ul class="no-interest-list"> 
+          <li><span class="lang-en">Non-technical admin roles</span><span class="lang-sk">Netechnické administratívne pozície</span></li>
+          <li><span class="lang-en">Non-technical project management or scrum master positions</span><span class="lang-sk">Netechnický projektový manažment alebo pozície scrum mastera</span></li>
+          <li><span class="lang-en">Roles requiring relocation outside of Slovakia (open to remote work)</span><span class="lang-sk">Pozície vyžadujúce presťahovanie mimo Slovenska (otvorený práci na diaľku)</span></li>
+          <li><span class="lang-en">Unpaid internships or trial periods beyond a standard interview process</span><span class="lang-sk">Neplatené stáže alebo skúšobné obdobia nad rámec štandardného pohovoru</span></li>
+          <li><span class="lang-en">Exclusively front-end positions with no back-end involvement</span><span class="lang-sk">Výhradne front-end pozície bez zapojenia k vývoju back-endu</span></li>
+          <li><span class="lang-en">Offers with unspecified salaries</span><span class="lang-sk">Ponuky s nešpecifikovaným platom</span></li>
+          <li><span class="lang-en">Long and obfuscated hiring processes (2 rounds max, Management + Technical)</span><span class="lang-sk">Dlhé a neprehľadné náborové procesy (max. 2 kolá, Manažment + Technické)</span></li>
+        </ul>
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <footer>
+    <span class="lang-en">Built with HTML &amp; CSS · Hosted on GitHub Pages</span>
+    <span class="lang-sk">Vytvorené pomocou HTML &amp; CSS · Hosťované na GitHub Pages</span>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">[ ✕ ]</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  </div>
+
+  <script>
+    function openLightbox(src, alt) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      img.alt = alt;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    function copyEmail() {
+      navigator.clipboard.writeText('sami.ljimari@gmail.com').then(() => {
+        const label = document.getElementById('email-label');
+        label.textContent = 'Copied!';
+        setTimeout(() => { label.textContent = 'sami.ljimari@gmail.com'; }, 2000);
+      });
+    }
+
+    function setLang(lang) {
+      document.body.classList.toggle('sk', lang === 'sk');
+      document.documentElement.lang = lang;
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-sk').classList.toggle('active', lang === 'sk');
+      localStorage.setItem('cv-lang', lang);
+    }
+    const saved = localStorage.getItem('cv-lang');
+    if (saved === 'sk') setLang('sk');
+  </script>
+
+</body>
+</html>
